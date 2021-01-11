@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- JS only -->
     <script src="eel.js"></script>
+    <script src="script.js"></script>
+
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <title>Family Budget</title>
@@ -25,20 +27,33 @@
 
         <div class="inc-or-exp">
                 <div class="Income">
-                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                    <label class="btn btn-success" for="option1">Incomes</label>
+                    <input onclick="OpenIncomeWindow()" type="button" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                    <label  class="btn btn-success" for="option1">Incomes</label>
                 </div>
+
                 <div class="Expense">
-                    <input type="radio" class=" btn-check" name="options" id="option2"  autocomplete="off">
+                    <input onclick="OpenExpenseWindow()" type="button" class=" btn-check" name="options" id="option2"  autocomplete="off">
                     <label class="btn btn-danger" for="option2">Expense</label>
                 </div>
 
                 <div class="Debts">
-                    <input type="radio" class=" btn-check" name="options" id="option3"  autocomplete="off">
-                    <label class="btn btn-danger" for="option3">Expense</label>
+                    <input onclick="OpenDebtsWindow() " type="button" class=" btn-check" name="options" id="option3"  autocomplete="off">
+                    <label class="btn btn-secondary" for="option3">Debts</label>
                 </div>
-        </div>
 
+                <div id="IncomeWindow">
+                    <p>Your Incomes Here</p>
+                </div>
+
+                <div id="ExpenseWindow">
+                    <p>Your Expenses Here</p>
+                </div>
+
+                <div id="DebtWindow">
+                    <p>Your Debts Here</p>
+                </div>
+
+        </div>
     </div>
 </div>
 </body>

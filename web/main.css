@@ -34,14 +34,60 @@ body h1{
 
 }
 .Income{
+	
 	width: 85px;
 	display: inline-block;
+	margin-top: 5px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+
 .Expense{
+
 	width: 85px;
 	display: inline-block;
+	margin-top: 5px;
 	margin-left: auto;
 	margin-right: auto;
+}
+.Debts{
+	width: 85px;
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: -10px;
+}
+
+
+#IncomeWindow{
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	height: 250px;
+	background-color: #fff;
+	border: solid 1px #1B262C;
+	margin-top: 50px;
+}
+
+#ExpenseWindow{
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	height: 250px;
+	background-color: #fff;
+	border: solid 1px #1B262C;
+	margin-top: 50px;
+}
+
+#DebtWindow{
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	height: 250px;
+	background-color: #fff;
+	border: solid 1px #1B262C;
+	margin-top: 50px;
 }
