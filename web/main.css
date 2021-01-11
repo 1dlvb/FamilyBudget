@@ -1,0 +1,47 @@
+/*#1B262C*/
+/*#0F4C75*/
+/*#3282B8*/
+/*#BBE1FA*/
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;800&display=swap');
+
+body{
+	background-color: green;
+}
+body p, a, h1{
+	font-family: 'Mukta', sans-serif;
+
+}
+body h1{
+	text-align: center;
+	color: #ffffff;
+}
+.main{
+	justify-content: center;
+	margin-top: 25px;
+	width: 100%;
+	height: 100%;
+}
+.inc-or-exp{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+	width: 100%;
+	height: 40px;
+
+}
+.btn-group{
+
+}
+.Income{
+	width: 85px;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.Expense{
+	width: 85px;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
