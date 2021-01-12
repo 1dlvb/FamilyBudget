@@ -30,17 +30,17 @@
 
         <div class="inc-or-exp">
                 <div class="Income">
-                    <input onclick="OpenIncomeWindow()" type="button" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                    <input onclick="OpenIncomeWindow();" type="button" class="btn-check" name="options" id="option1" autocomplete="off" checked>
                     <label  class="btn btn-success" for="option1">Incomes</label>
                 </div>
 
                 <div class="Expense">
-                    <input onclick="OpenExpenseWindow()" type="button" class=" btn-check" name="options" id="option2"  autocomplete="off">
+                    <input onclick="OpenExpenseWindow();" type="button" class=" btn-check" name="options" id="option2"  autocomplete="off">
                     <label class="btn btn-danger" for="option2">Expense</label>
                 </div>
 
                 <div class="Debts">
-                    <input onclick="OpenDebtsWindow()" type="button" class=" btn-check" name="options" id="option3"  autocomplete="off">
+                    <input onclick="OpenDebtsWindow();" type="button" class=" btn-check" name="options" id="option3"  autocomplete="off">
                     <label class="btn btn-secondary" for="option3">Debts</label>
                 </div>
 
@@ -49,13 +49,13 @@
                 </div>
 
                 <div id="ExpenseWindow">
-                    <p>Your Expenses Here</p>
+                    <p class="expense-text">Your Expenses Here</p>
                         <div class="tag-input">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputTagSelect">Tag</label>
 
-                                <select class="form-select" name="TagSelect" id="inputTagSelect" onchange="TagSelect()">
-                                    <option selected>Choose...</option>
+                                <select class="form-select" name="tag_select" id="inputTagSelect">
+                                    <option selected>Other</option>
                                     <option value="Credits">Credits</option>
                                     <option value="Medical">Medical</option>
                                     <option value="Investment">Investment</option>
@@ -66,12 +66,17 @@
                             </div>
                         </div>
 
-                        <div class="expense-rubles-amount">
+                        <div class="money-spent-amount">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">₽</span>
                                 <span class="input-group-text">0.00</span>
-                                <input type="text" class="form-control" aria-label="Rubles amount (with dot and two decimal places)">
+                                <input type="number" step="0.01" class="form-control" id="amountOfMoneySpent" aria-label="Rubles amount (with dot and two decimal places)">
                             </div>
+                            <div class="alert alert-danger" role="alert" id="alert-money" style="display: none">
+                                Error! Check that the entered data is correct!
+                            </div>
+
+                            <button class="btn btn-secondary" onclick="expense(); clear_values_expenses();">Send</button>
                         </div>
 
 
