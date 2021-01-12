@@ -40,6 +40,7 @@ function OpenExpenseWindow()
 
 
 
+
 function OpenDebtsWindow()
 {
 	document.getElementById("IncomeWindow").style.display = "none";
@@ -57,4 +58,12 @@ function OpenDebtsWindow()
 
 	}
 
+}
+
+function TagSelect(){
+	var sel = document.getElementById('inputTagSelect').selectedIndex;
+	var options = document.getElementById('inputTagSelect').options;
+	var tag_js = options[sel].text;
+	eel.tag_select_py(tag_js)
+	console.log(tag_js);
 }
