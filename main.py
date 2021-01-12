@@ -12,7 +12,7 @@ def tag_select_py(tag_js):                               # get tag from js
 
 @eel.expose
 def tag_money_spend_amount_py(ams_js):                   # get Amount of money spent
-    ams = ams_js
+    ams = round(float(ams_js), 2)
     print("You spent: {}".format(ams))
 
 
