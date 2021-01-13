@@ -61,35 +61,72 @@ function OpenDebtsWindow()
 }
 
 function expense(){
-	//money variable
+	//spenet money variable
 	var ams_js = document.querySelector("#amountOfMoneySpent").value;
 	
 	//tag variables
-	var sel = document.getElementById('inputTagSelect').selectedIndex;
-	var options = document.getElementById('inputTagSelect').options;
-	var tag_js = options[sel].text;
+	var selExp = document.getElementById('inputTagSelectExp').selectedIndex;
+	var optionsExp = document.getElementById('inputTagSelectExp').options;
+	var tag_exp_js = optionsExp[selExp].text;
+	
 	if (ams_js < 0.01) {
 		//show error
-		document.getElementById('alert-money').style.display = "block";
+		document.getElementById('alert-money-exp').style.display = "block";
 		return false; 
 	}
 	else
 	{
 		//tag
-		eel.tag_select_py(tag_js);
-		console.log(tag_js);
+		eel.tag_select_exp_py(tag_exp_js);
+		console.log(tag_exp_js);
 
 	
 		//money
-		document.getElementById('alert-money').style.display = "none";
+		document.getElementById('alert-money-exp').style.display = "none";
 		console.log(ams_js);
 		eel.tag_money_spend_amount_py(ams_js);	
 	}
 }
 
 
+
+function income(){
+	//Resived money
+	var ags_js = document.querySelector("#amountOfMoneyGet").value;
+
+	//tag variables
+	var selInc = document.getElementById("inputTagSelectInc").selectedIndex;
+	var optionsInc = document.getElementById("inputTagSelectInc").options;
+	var tag_inc_js = optionsInc[selInc].text;
+
+	if (ags_js < 0.01) {
+		//show error
+		document.getElementById(('alert-money-inc')).style.display = 'block';
+		return false;
+	}
+	else 
+	{
+		//tag
+		eel.tag_select_inc_py(tag_inc_js);
+		console.log(tag_inc_js);
+
+	
+		//money
+		document.getElementById('alert-money-inc').style.display = "none";
+		console.log(ags_js);
+		eel.tag_money_get_amount_py(ags_js);	
+	}
+}
+
+
+function clear_values_incomes(){
+	document.getElementById('inputTagSelectInc').value = 'Salary'
+	document.getElementById('amountOfMoneyGet').value = ' ';
+
+}
+
 function clear_values_expenses(){
-	document.getElementById('inputTagSelect').value = 'Other'
+	document.getElementById('inputTagSelectExp').value = 'Other'
 	document.getElementById('amountOfMoneySpent').value = ' ';
 
 }

@@ -44,25 +44,56 @@
                     <label class="btn btn-secondary" for="option3">Debts</label>
                 </div>
 
+
+                <!--Incomes-->
                 <div id="IncomeWindow">
-                    <p>Your Incomes Here</p>
+                    <p class="incomes-header">Your Incomes Here</p>
+                       <div class="tag-input tags-inc">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputTagSelectInc">Tag</label>
+
+                                <select class="form-select" name="tag_select" id="inputTagSelectInc">
+                                    <option value="Salary" selected>Salary</option>
+                                    <option value="Upfront">Upfront</option>
+                                    <option value="Pay-debt">Pay Debt</option>
+                                    <option value="Found">Found</option>
+                                    <option value="Investment">Investment</option>
+                                </select>
+                            </div>
+                       </div>
+
+                        <div class="money-get-amount">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">₽</span>
+                                <span class="input-group-text">0.00</span>
+                                <input type="number" step="0.01" class="form-control" id="amountOfMoneyGet" aria-label="Rubles amount (with dot and two decimal places)">
+                            </div>
+                            <div class="alert alert-danger " role="alert" id="alert-money-inc" style="display: none">
+                                Error! Check that the entered data is correct!
+                            </div>
+
+                            <button class="btn btn-secondary" onclick="income(); clear_values_incomes();">Send</button>
+                        </div>
                 </div>
 
-                <div id="ExpenseWindow">
-                    <p class="expense-text">Your Expenses Here</p>
-                        <div class="tag-input">
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputTagSelect">Tag</label>
 
-                                <select class="form-select" name="tag_select" id="inputTagSelect">
+                <!--Expenses-->
+                <div id="ExpenseWindow">
+                    <p class="expense-header">Your Expenses Here</p>
+                        <div class="tag-input tags-exp">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputTagSelectExp">Tag</label>
+
+                                <select class="form-select" name="tag_select" id="inputTagSelectExp">
                                     <option selected>Other</option>
                                     <option value="Credits">Credits</option>
+                                    <option value="Utility-bills">Utility bills</option>
+                                    <option value="Snacks">Snacks</option>
+                                    <option value="Food">Food</option>
                                     <option value="Medical">Medical</option>
                                     <option value="Investment">Investment</option>
                                     <option value="Sport">Sport</option>
-                                    <option value="Utility-bills">Utility bills</option>
                                 </select>
-
                             </div>
                         </div>
 
@@ -72,18 +103,17 @@
                                 <span class="input-group-text">0.00</span>
                                 <input type="number" step="0.01" class="form-control" id="amountOfMoneySpent" aria-label="Rubles amount (with dot and two decimal places)">
                             </div>
-                            <div class="alert alert-danger" role="alert" id="alert-money" style="display: none">
+                            <div class="alert alert-danger" role="alert" id="alert-money-exp" style="display: none">
                                 Error! Check that the entered data is correct!
                             </div>
-
                             <button class="btn btn-secondary" onclick="expense(); clear_values_expenses();">Send</button>
                         </div>
-
-
                 </div>
 
+
+                <!--Debts-->
                 <div id="DebtWindow">
-                    <p>Your Debts Here</p>
+                    <p class="debts-header">Your Debts Here</p>
                 </div>
 
         </div>
