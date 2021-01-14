@@ -25,9 +25,21 @@ def tag_select_inc_py(tag_inc_js):                               # get Inc tag f
 
 
 @eel.expose
-def tag_money_get_amount_py(ags_js):                            # get Amount of money get
+def tag_money_get_amount_py(ags_js):                            # get Amount of money
     ags = round(float(ags_js), 2)
     print("You got: {}".format(ags))
+
+
+@eel.expose
+def moneylenders_name_py(moneylenders_name_js):                 # Moneylender's name
+    ml_name = moneylenders_name_js
+    print("You borrowed money from: {}".format(ml_name))
+
+
+@eel.expose
+def amount_of_debt_py(amount_of_debt_js):                      # Amount of debt
+    amd = round(float(amount_of_debt_js), 2)                   # amd - amount of money debt
+    print("You borrowed: {}".format(amd))
 
 
 eel.start('index.html', size=(750, 900))

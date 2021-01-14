@@ -119,14 +119,58 @@ function income(){
 }
 
 
+function debt(){
+	//Resived money
+	var amount_of_debt_js = document.querySelector('#amount-of-debt').value;
+
+	//name variables
+	var moneylenders_name_js = document.querySelector('#moneylenders-name').value;
+
+
+	if ((amount_of_debt_js < 0.01)||(isEmpty(moneylenders_name_js))){
+		document.getElementById("alert-money-debt").style.display = 'block';
+		return false;
+	}
+	else
+	{
+		//name
+		eel.moneylenders_name_py(moneylenders_name_js);
+		console.log(moneylenders_name_js);
+
+		//money
+		document.getElementById("alert-money-debt").style.display = 'none';
+		eel.amount_of_debt_py(amount_of_debt_js);
+		console.log(amount_of_debt_js);
+
+	}
+}	
+
+
+function isEmpty(str){
+	if (str.trim() == '')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 function clear_values_incomes(){
-	document.getElementById('inputTagSelectInc').value = 'Salary'
-	document.getElementById('amountOfMoneyGet').value = ' ';
+	document.getElementById('amountOfMoneyGet').value = 'Salary'
+	document.getElementById('inputTagSelectInc').value = ' ';
 
 }
 
 function clear_values_expenses(){
 	document.getElementById('inputTagSelectExp').value = 'Other'
 	document.getElementById('amountOfMoneySpent').value = ' ';
+
+}
+
+function clear_values_debts(){
+	document.getElementById('amount-of-debt').value = ' '
+	document.getElementById('moneylenders-name').value = ' ';
 
 }

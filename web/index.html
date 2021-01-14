@@ -114,6 +114,25 @@
                 <!--Debts-->
                 <div id="DebtWindow">
                     <p class="debts-header">Your Debts Here</p>
+
+                    <div class="moneylenders-name">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Name</span>
+                                <input type="text" class="form-control" id="moneylenders-name" placeholder="Enter name..." aria-label="Name of moneylender">
+                            </div>
+                    </div>
+
+                    <div class="amount-of-debt">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">₽</span>
+                                <span class="input-group-text">0.00</span>
+                                <input type="number" step="0.01" class="form-control" id="amount-of-debt" aria-label="Rubles amount (with dot and two decimal places)">
+                            </div>
+                            <div class="alert alert-danger" role="alert" id="alert-money-debt" style="display: none">
+                                Error! Check that the entered data is correct!
+                            </div>
+                            <button class="btn btn-secondary" onclick="debt(); clear_values_debts();">Send</button>
+                    </div>
                 </div>
 
         </div>
