@@ -1,17 +1,19 @@
-var a;
+var a = 1;
 function OpenIncomeWindow()
-{
-	document.getElementById("ExpenseWindow").style.display = "none";
-	document.getElementById("DebtWindow").style.display = "none";
+{	
 
 	if(a==1)
 	{
 		document.getElementById("IncomeWindow").style.display = "block";
+
+		//history button
+		document.getElementById("open-history-btn").style.display = 'none';
 		return a = 0;
 	}
 	else
 	{
 		document.getElementById("IncomeWindow").style.display = "none";
+		document.getElementById("open-history-btn").style.display = 'inline-block';
 		return a = 1;
 
 	}
@@ -23,15 +25,20 @@ function OpenExpenseWindow()
 {
 	document.getElementById("IncomeWindow").style.display = "none";
 	document.getElementById("DebtWindow").style.display = "none";
+	document.getElementById("open-history-btn").style.display = 'none';
 
 	if(a==1)
 	{
 		document.getElementById("ExpenseWindow").style.display = "block";
+		document.getElementById("open-history-btn").style.display = 'none';
+
 		return a = 0;
 	}
 	else
 	{
 		document.getElementById("ExpenseWindow").style.display = "none";
+		document.getElementById("open-history-btn").style.display = 'inline-block';
+		
 		return a = 1;
 
 	}
@@ -45,15 +52,20 @@ function OpenDebtsWindow()
 {
 	document.getElementById("IncomeWindow").style.display = "none";
 	document.getElementById("ExpenseWindow").style.display = "none";
+	document.getElementById("open-history-btn").style.display = 'none';
 
 	if(a==1)
 	{
 		document.getElementById("DebtWindow").style.display = "block";
+		document.getElementById("open-history-btn").style.display = 'none';
+
 		return a = 0;
 	}
 	else
 	{
 		document.getElementById("DebtWindow").style.display = "none";
+		document.getElementById("open-history-btn").style.display = 'inline-block';
+
 		return a = 1;
 
 	}
@@ -177,7 +189,8 @@ function clear_values_debts(){
 
 
 function OpenHistoryWindow()
-{
+{	
+	a = 0;
 	document.getElementById("Incomes-open").style.display = "none";
 	document.getElementById("Expenses-open").style.display = "none";
 	document.getElementById("Debts-open").style.display = "none";

@@ -31,17 +31,17 @@
         <h1>Family Budget</h1>
         <div class="inc-or-exp">
                 <div class="Income" id="Incomes-open">
-                    <input onclick="OpenIncomeWindow();" type="button" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                    <label  class="btn btn-success" for="option1">Incomes</label>
+                    <button class="btn btn-success"  onclick="OpenIncomeWindow();" id="option1">Incomes</button>
+
                 </div>
 
                 <div class="Expense" id="Expenses-open">
-                    <input onclick="OpenExpenseWindow();" type="button" class=" btn-check" name="options" id="option2"  autocomplete="off">
+                    <input onclick="OpenExpenseWindow();" type="button" class="btn-check" name="options" id="option2">
                     <label class="btn btn-danger" for="option2">Expense</label>
                 </div>
 
                 <div class="Debts" id="Debts-open">
-                    <input onclick="OpenDebtsWindow();" type="button" class=" btn-check" name="options" id="option3"  autocomplete="off">
+                    <input onclick="OpenDebtsWindow();" type="button" class="btn-check" name="options" id="option3">
                     <label class="btn btn-secondary" for="option3">Debts</label>
                 </div>
 
@@ -140,20 +140,14 @@
 
         <!--Go to history-->
         <div class="go-to-history">
-            <button class="btn btn-info" id="open-history-btn" onclick="OpenHistoryWindow();">Go to history page!</button>
+            <button class="btn btn-primary" id="open-history-btn" onclick="OpenHistoryWindow();">Go to history page!</button>
         </div>
 
         <!--History page-->
         <div class="history" id="history" style="display: none;">
             <h1>History page</h1>
         </div>
-
-
-
     </div>
-
-
-
 </div>
 </body>
 </html>

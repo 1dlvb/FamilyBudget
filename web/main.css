@@ -23,6 +23,10 @@ body h1{
 	color: #ffffff;
 }
 
+button:active, button:focus {
+  outline: none !important;
+}
+
 .main{
 	justify-content: center;
 	margin-top: 25px;
@@ -149,7 +153,9 @@ body h1{
 	margin-right: auto;	
 }
 
+.btn-primary { border-color: #1A84CA; background-color: ##1A84CA;}
 
+.btn-primary:hover { border-color: #1A84CA; background-color: #136094; }
 
 .go-to-history{
 	width: 80%;
@@ -162,6 +168,6 @@ body h1{
 }
 
 .go-back-btn{
-	float: right;
-	margin-right: -15%;
+	float: left;
+	margin-left: -85px;
 }
