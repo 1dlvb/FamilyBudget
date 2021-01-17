@@ -72,46 +72,20 @@ function OpenDebtsWindow()
 
 }
 
-function expense(){
-	//spenet money variable
-	var ams_js = document.querySelector("#amountOfMoneySpent").value;
-	
-	//tag variables
-	var selExp = document.getElementById('inputTagSelectExp').selectedIndex;
-	var optionsExp = document.getElementById('inputTagSelectExp').options;
-	var tag_exp_js = optionsExp[selExp].text;
-	
-	if (ams_js < 0.01) {
-		//show error
-		document.getElementById('alert-money-exp').style.display = "block";
-		return false; 
-	}
-	else
-	{
-		//tag
-		eel.tag_select_exp_py(tag_exp_js);
-		console.log(tag_exp_js);
-
-	
-		//money
-		document.getElementById('alert-money-exp').style.display = "none";
-		console.log(ams_js);
-		eel.tag_money_spend_amount_py(ams_js);	
-	}
-}
-
-
-
 function income(){
 	//Resived money
 	var ags_js = document.querySelector("#amountOfMoneyGet").value;
+	var date_js_inc = new Date(document.querySelector("#dateInc").value).toISOString().slice(0, 10);
+	var nowDate = new Date().toISOString().slice(0, 10);
+
 
 	//tag variables
 	var selInc = document.getElementById("inputTagSelectInc").selectedIndex;
 	var optionsInc = document.getElementById("inputTagSelectInc").options;
 	var tag_inc_js = optionsInc[selInc].text;
 
-	if (ags_js < 0.01) {
+	if ((ags_js < 0.01) ||(date_js_inc > nowDate)) {
+	
 		//show error
 		document.getElementById(('alert-money-inc')).style.display = 'block';
 		return false;
@@ -127,19 +101,66 @@ function income(){
 		document.getElementById('alert-money-inc').style.display = "none";
 		console.log(ags_js);
 		eel.tag_money_get_amount_py(ags_js);	
+		
+		//date
+		eel.date_inc_py(date_js_inc);
+		console.log(date_js.getDate());
+		console.log(date_js.getMonth() + 1);
+		console.log(date_js.getFullYear());
+
+
+
 	}
 }
+
+
+function expense(){
+	//spenet money variable
+	var ams_js = document.querySelector("#amountOfMoneySpent").value;
+	var date_js_exp = new Date(document.querySelector("#dateExp").value).toISOString().slice(0, 10);
+	var nowDate = new Date().toISOString().slice(0, 10);
+
+	//tag variables
+	var selExp = document.getElementById('inputTagSelectExp').selectedIndex;
+	var optionsExp = document.getElementById('inputTagSelectExp').options;
+	var tag_exp_js = optionsExp[selExp].text;
+	
+	if ((ams_js < 0.01) ||(date_js_exp > nowDate)) {
+		//show error
+		document.getElementById('alert-money-exp').style.display = "block";
+		return false; 
+	}
+	else
+	{
+		//tag
+		eel.tag_select_exp_py(tag_exp_js);
+		console.log(tag_exp_js);
+
+	
+		//money
+		document.getElementById('alert-money-exp').style.display = "none";
+		console.log(ams_js);
+		eel.tag_money_spend_amount_py(ams_js);	
+
+		//date
+		eel.date_exp_py(date_js_exp);
+	}
+}
+
+
 
 
 function debt(){
 	//Resived money
 	var amount_of_debt_js = document.querySelector('#amount-of-debt').value;
+	var date_js_debt = new Date(document.querySelector("#dateDebt").value).toISOString().slice(0, 10);
+	var nowDate = new Date().toISOString().slice(0, 10);
 
 	//name variables
 	var moneylenders_name_js = document.querySelector('#moneylenders-name').value;
 
 
-	if ((amount_of_debt_js < 0.01)||(isEmpty(moneylenders_name_js))){
+	if ((amount_of_debt_js < 0.01)||(isEmpty(moneylenders_name_js)) || (date_js_debt > nowDate) ){
 		document.getElementById("alert-money-debt").style.display = 'block';
 		return false;
 	}
@@ -153,6 +174,9 @@ function debt(){
 		document.getElementById("alert-money-debt").style.display = 'none';
 		eel.amount_of_debt_py(amount_of_debt_js);
 		console.log(amount_of_debt_js);
+
+		//date
+		eel.date_debt_py(date_js_debt);
 
 	}
 }	
@@ -170,8 +194,8 @@ function isEmpty(str){
 }
 
 function clear_values_incomes(){
-	document.getElementById('amountOfMoneyGet').value = 'Salary';
-	document.getElementById('inputTagSelectInc').value = ' ';
+	document.getElementById('inputTagSelectInc').value = 'Salary';
+	document.getElementById('amountOfMoneyGet').value = ' ';
 
 }
 
@@ -182,10 +206,13 @@ function clear_values_expenses(){
 }
 
 function clear_values_debts(){
+	document.getElementById('moneylenders-name').value = '';
 	document.getElementById('amount-of-debt').value = ' ';
-	document.getElementById('moneylenders-name').value = ' ';
 
 }
+
+
+
 
 
 function OpenHistoryWindow()

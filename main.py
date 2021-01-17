@@ -42,4 +42,22 @@ def amount_of_debt_py(amount_of_debt_js):                      # Amount of debt
     print("You borrowed: {}".format(amd))
 
 
+@eel.expose
+def date_inc_py(date_js_inc):
+    inc_date = date_js_inc
+    print("Date of receipt of income: {}".format(inc_date))
+
+
+@eel.expose
+def date_exp_py(date_js_exp):
+    exp_date = date_js_exp
+    print("Date of expenditure: {}".format(exp_date))
+
+
+@eel.expose
+def date_debt_py(date_js_debt):
+    debt_date = date_js_debt
+    print("Date of borrowing: {}".format(debt_date))
+
+
 eel.start('index.html', size=(750, 900))

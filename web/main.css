@@ -43,8 +43,11 @@ button:active, button:focus {
 	height: 40px;
 
 }
-.btn-group{
-
+.date{
+	margin-bottom: 5px;
+}
+.error{
+	margin-top: 10px;
 }
 .Income{
 	
@@ -153,9 +156,6 @@ button:active, button:focus {
 	margin-right: auto;	
 }
 
-.btn-primary { border-color: #1A84CA; background-color: ##1A84CA;}
-
-.btn-primary:hover { border-color: #1A84CA; background-color: #136094; }
 
 .go-to-history{
 	width: 80%;
