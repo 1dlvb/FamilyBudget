@@ -5,7 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;800&display=swap');
 
 body{
-	background-color: green;
+	height: 100%;
+	width: 100%;
+	background-color: #fff;
+	background: url(money-bag.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;	
+
 }
 body p, a, h1{
 	font-family: 'Mukta', sans-serif;
@@ -15,15 +22,17 @@ body h1{
 	text-align: center;
 	color: #ffffff;
 }
+
 .main{
 	justify-content: center;
 	margin-top: 25px;
 	width: 100%;
 	height: 100%;
+
 }
 .inc-or-exp{
 	text-align: center;
-	margin-left: auto;
+	margin-left: 
 	margin-right: auto;
 	margin-top: 25px;
 	width: 100%;
@@ -138,4 +147,21 @@ body h1{
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;	
+}
+
+
+
+.go-to-history{
+	width: 80%;
+	height: 35px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	justify-content: center;
+	text-align: center;
+}
+
+.go-back-btn{
+	float: right;
+	margin-right: -15%;
 }

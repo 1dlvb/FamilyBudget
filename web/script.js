@@ -158,19 +158,101 @@ function isEmpty(str){
 }
 
 function clear_values_incomes(){
-	document.getElementById('amountOfMoneyGet').value = 'Salary'
+	document.getElementById('amountOfMoneyGet').value = 'Salary';
 	document.getElementById('inputTagSelectInc').value = ' ';
 
 }
 
 function clear_values_expenses(){
-	document.getElementById('inputTagSelectExp').value = 'Other'
+	document.getElementById('inputTagSelectExp').value = 'Other';
 	document.getElementById('amountOfMoneySpent').value = ' ';
 
 }
 
 function clear_values_debts(){
-	document.getElementById('amount-of-debt').value = ' '
+	document.getElementById('amount-of-debt').value = ' ';
 	document.getElementById('moneylenders-name').value = ' ';
+
+}
+
+
+function OpenHistoryWindow()
+{
+	document.getElementById("Incomes-open").style.display = "none";
+	document.getElementById("Expenses-open").style.display = "none";
+	document.getElementById("Debts-open").style.display = "none";
+	document.getElementById("open-history-btn").style.display = 'none';
+	document.getElementById("go-back-btn").style.display = 'block';
+
+	//history page
+	document.getElementById("history").style.display = 'none';
+
+
+	if(a==1)
+	{
+		document.getElementById("Incomes-open").style.display = "block";
+		document.getElementById("Expenses-open").style.display = "block";
+		document.getElementById("Debts-open").style.display = "block";
+		
+		//history page
+		document.getElementById("history").style.display = 'none';
+
+		return a = 0;
+	}
+	else
+	{
+		document.getElementById("Incomes-open").style.display = "none";
+		document.getElementById("Expenses-open").style.display = "none";
+		document.getElementById("Debts-open").style.display = "none";
+		
+		//history page 
+		document.getElementById("history").style.display = 'block';
+		
+		return a = 1;
+
+	}
+
+}
+
+function CloseHistoryWindow()
+{
+	document.getElementById("Incomes-open").style.display = "inline-block";
+	document.getElementById("Expenses-open").style.display = "inline-block";
+	document.getElementById("Debts-open").style.display = "inline-block";
+	document.getElementById("open-history-btn").style.display = 'inline-block';
+	document.getElementById("go-back-btn").style.display = 'none';
+
+	//history page
+	document.getElementById("history").style.display = 'none';
+
+
+	if(a==1)
+	{
+		document.getElementById("Incomes-open").style.display = "inline-block";
+		document.getElementById("Expenses-open").style.display = "inline-block";
+		document.getElementById("Debts-open").style.display = "inline-block";
+		document.getElementById("open-history-btn").style.display = 'inline-block';
+		
+		//history page
+		document.getElementById("history").style.display = 'none';
+
+
+
+		return a = 0;
+	}
+	else
+	{
+		document.getElementById("Incomes-open").style.display = "none";
+		document.getElementById("Expenses-open").style.display = "none";
+		document.getElementById("Debts-open").style.display = "none";
+		document.getElementById("open-history-btn").style.display = 'none';
+
+		//history page
+		document.getElementById("history").style.display = 'block';
+		
+		
+		return a = 1;
+
+	}
 
 }

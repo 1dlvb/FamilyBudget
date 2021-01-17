@@ -26,23 +26,25 @@
 <body style="background-color: #0F4C75">
 <div class="container">
     <div class="main">
+        <!--Go back button-->
+        <button class="go-back-btn btn btn-secondary" id="go-back-btn" onclick="CloseHistoryWindow();" style="display:none;">Go back</button>
         <h1>Family Budget</h1>
-
         <div class="inc-or-exp">
-                <div class="Income">
+                <div class="Income" id="Incomes-open">
                     <input onclick="OpenIncomeWindow();" type="button" class="btn-check" name="options" id="option1" autocomplete="off" checked>
                     <label  class="btn btn-success" for="option1">Incomes</label>
                 </div>
 
-                <div class="Expense">
+                <div class="Expense" id="Expenses-open">
                     <input onclick="OpenExpenseWindow();" type="button" class=" btn-check" name="options" id="option2"  autocomplete="off">
                     <label class="btn btn-danger" for="option2">Expense</label>
                 </div>
 
-                <div class="Debts">
+                <div class="Debts" id="Debts-open">
                     <input onclick="OpenDebtsWindow();" type="button" class=" btn-check" name="options" id="option3"  autocomplete="off">
                     <label class="btn btn-secondary" for="option3">Debts</label>
                 </div>
+
 
 
                 <!--Incomes-->
@@ -134,9 +136,24 @@
                             <button class="btn btn-secondary" onclick="debt(); clear_values_debts();">Send</button>
                     </div>
                 </div>
-
         </div>
+
+        <!--Go to history-->
+        <div class="go-to-history">
+            <button class="btn btn-info" id="open-history-btn" onclick="OpenHistoryWindow();">Go to history page!</button>
+        </div>
+
+        <!--History page-->
+        <div class="history" id="history" style="display: none;">
+            <h1>History page</h1>
+        </div>
+
+
+
     </div>
+
+
+
 </div>
 </body>
 </html>
