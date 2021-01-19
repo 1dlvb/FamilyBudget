@@ -74,7 +74,7 @@ function OpenDebtsWindow()
 
 function income(){
 	//Resived money
-	var ags_js = document.querySelector("#amountOfMoneyGet").value;
+	var amg_js = document.querySelector("#amountOfMoneyGet").value;
 	var date_js_inc = new Date(document.querySelector("#dateInc").value).toISOString().slice(0, 10);
 	var nowDate = new Date().toISOString().slice(0, 10);
 
@@ -84,7 +84,7 @@ function income(){
 	var optionsInc = document.getElementById("inputTagSelectInc").options;
 	var tag_inc_js = optionsInc[selInc].text;
 
-	if ((ags_js < 0.01) ||(date_js_inc > nowDate)) {
+	if ((amg_js < 0.01) ||(date_js_inc > nowDate)) {
 	
 		//show error
 		document.getElementById(('alert-money-inc')).style.display = 'block';
@@ -93,21 +93,23 @@ function income(){
 	else 
 	{
 		//tag
-		eel.tag_select_inc_py(tag_inc_js);
-		console.log(tag_inc_js);
+		// eel.tag_select_inc_py(tag_inc_js);  //change here maybe
+		// console.log(tag_inc_js);
 
 	
 		//money
 		document.getElementById('alert-money-inc').style.display = "none";
-		console.log(ags_js);
-		eel.tag_money_get_amount_py(ags_js);	
+		// console.log(amg_js);
+		// eel.tag_money_get_amount_py(amg_js);	//change here maybe
 		
 		//date
-		eel.date_inc_py(date_js_inc);
-		console.log(date_js.getDate());
-		console.log(date_js.getMonth() + 1);
-		console.log(date_js.getFullYear());
+		// eel.date_inc_py(date_js_inc);
+		// console.log(date_js.getDate());
+		// console.log(date_js.getMonth() + 1);
+		// console.log(date_js.getFullYear());
 
+		//incomes
+		eel.incomes(tag_inc_js, amg_js, date_js_inc)
 
 
 	}
@@ -195,19 +197,19 @@ function isEmpty(str){
 
 function clear_values_incomes(){
 	document.getElementById('inputTagSelectInc').value = 'Salary';
-	document.getElementById('amountOfMoneyGet').value = ' ';
+	document.getElementById('amountOfMoneyGet').value = '';
 
 }
 
 function clear_values_expenses(){
 	document.getElementById('inputTagSelectExp').value = 'Other';
-	document.getElementById('amountOfMoneySpent').value = ' ';
+	document.getElementById('amountOfMoneySpent').value = '';
 
 }
 
 function clear_values_debts(){
 	document.getElementById('moneylenders-name').value = '';
-	document.getElementById('amount-of-debt').value = ' ';
+	document.getElementById('amount-of-debt').value = '';
 
 }
 
