@@ -92,24 +92,12 @@ function income(){
 	}
 	else 
 	{
-		//tag
-		// eel.tag_select_inc_py(tag_inc_js);  //change here maybe
-		// console.log(tag_inc_js);
-
-	
-		//money
+			
+		//hide error
 		document.getElementById('alert-money-inc').style.display = "none";
-		// console.log(amg_js);
-		// eel.tag_money_get_amount_py(amg_js);	//change here maybe
 		
-		//date
-		// eel.date_inc_py(date_js_inc);
-		// console.log(date_js.getDate());
-		// console.log(date_js.getMonth() + 1);
-		// console.log(date_js.getFullYear());
-
 		//incomes
-		eel.incomes(tag_inc_js, amg_js, date_js_inc)
+		eel.incomes(tag_inc_js, amg_js, date_js_inc);
 
 
 	}
@@ -134,18 +122,13 @@ function expense(){
 	}
 	else
 	{
-		//tag
-		eel.tag_select_exp_py(tag_exp_js);
-		console.log(tag_exp_js);
+		
 
-	
-		//money
+		//hide error
 		document.getElementById('alert-money-exp').style.display = "none";
-		console.log(ams_js);
-		eel.tag_money_spend_amount_py(ams_js);	
+		
+		eel.expenses(tag_exp_js, ams_js, date_js_exp);
 
-		//date
-		eel.date_exp_py(date_js_exp);
 	}
 }
 
@@ -168,17 +151,13 @@ function debt(){
 	}
 	else
 	{
-		//name
-		eel.moneylenders_name_py(moneylenders_name_js);
-		console.log(moneylenders_name_js);
-
-		//money
+		
+		//hide error
 		document.getElementById("alert-money-debt").style.display = 'none';
-		eel.amount_of_debt_py(amount_of_debt_js);
-		console.log(amount_of_debt_js);
+		
+		eel.debts(moneylenders_name_js, amount_of_debt_js, date_js_debt)
 
-		//date
-		eel.date_debt_py(date_js_debt);
+		
 
 	}
 }	
