@@ -295,13 +295,13 @@ function CloseHistoryWindow()
 async function show_total_profit(){
 	//total profit
 	var profit = await eel.show_total_profit_py()();
-	document.getElementById("show-total-profit").innerHTML = profit;
+	document.getElementById("show-total-profit").innerHTML = "Your income: " + profit + " ₽";
 	console.log(profit);	
 
 }
 
 async function show_rest_of_money(){
 	var rest = await eel.show_rest_money_py()();
-	document.getElementById("show-rest-money").innerHTML = rest;
+	document.getElementById("show-rest-money").innerHTML = "Rest of money: " + rest + " ₽";
 	console.log(rest);
 }

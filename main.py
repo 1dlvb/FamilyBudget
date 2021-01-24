@@ -156,12 +156,6 @@ def incomes_py(tag_inc_js, amg_js, date_js_inc):
     return tag, amount, date
 
 
-# Show total profit
-@eel.expose
-def show_total_profit_py():
-    return cur.execute("SELECT profit FROM budget").fetchone()[0]
-
-
 # expenses logic. tag, profit, date
 @eel.expose
 def expenses_py(tag_exp_js, ams_js, date_js_exp):
@@ -185,11 +179,19 @@ def expenses_py(tag_exp_js, ams_js, date_js_exp):
     print(tag, amount, date)
     return tag, amount, date
 
+# Show total profit
+@eel.expose
+def show_total_profit_py():
+    return cur.execute("SELECT profit FROM budget").fetchone()[0]
+
 
 # total profit
 @eel.expose
 def show_rest_money_py():
-    return cur.execute("SELECT rest_money FROM budget").fetchone()[0]
+    profit = cur.execute("SELECT profit FROM budget").fetchone()[0]
+    amount_of_spent = cur.execute("SELECT rest_money FROM budget").fetchone()[0]
+    rest = profit - amount_of_spent
+    return rest
 
 
 # debts logic. tag, profit, date

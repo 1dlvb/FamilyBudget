@@ -31,13 +31,13 @@
         <h1 id="header">Family Budget</h1>
         <div class="inc-or-exp">
                 <div class="Income" id="Incomes-open">
-                    <button class="btn btn-success"  onclick="OpenIncomeWindow();" id="option1">Incomes</button>
+                    <button class="btn btn-secondary"  onclick="OpenIncomeWindow();" id="option1">Incomes</button>
 
                 </div>
 
                 <div class="Expense" id="Expenses-open">
                     <input onclick="OpenExpenseWindow();" type="button" class="btn-check" name="options" id="option2">
-                    <label class="btn btn-danger" for="option2">Expense</label>
+                    <label class="btn btn-secondary" for="option2">Expense</label>
                 </div>
 
                 <div class="Debts" id="Debts-open">
@@ -158,19 +158,19 @@
 
         <!--Go to history-->
         <div class="go-to-history">
-            <button class="btn btn-primary" id="open-history-btn" onclick="OpenHistoryWindow();
+            <button class="btn btn-secondary" id="open-history-btn" onclick="OpenHistoryWindow();
             show_total_profit(); show_rest_of_money();">Go to history page!</button>
         </div>
 
         <!--History page-->
         <div class="history col-sm-12" id="history" style="display: none;">
-            <div class="incomes-history-page col-sm-12">
-                <h1 id="show-total-profit">Your incomes will be here</h1>
+            <div class="incomes-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
+                <h1 class="history-headers"id="show-total-profit">Your incomes will be here</h1>
             </div>
-            <div class="expenses-history-page col-sm-12">
+            <div class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
                 <h1 id="show-rest-money">Your expenses will be here</h1>
             </div>
-            <div class="debts-history-page col-sm-12">
+            <div class="debts-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
                 <h1>Your debts will be here</h1>
             </div>
 
