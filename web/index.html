@@ -27,8 +27,8 @@
 <div class="container">
     <div class="main">
         <!--Go back button-->
-        <button class="go-back-btn btn btn-secondary" id="go-back-btn" onclick="CloseHistoryWindow();" style="display:none;">Go back</button>
-        <h1>Family Budget</h1>
+        <button class="go-back-btn btn btn-secondary col-md-1" id="go-back-btn" onclick="CloseHistoryWindow();" style="display:none;">Go back</button>
+        <h1 id="header">Family Budget</h1>
         <div class="inc-or-exp">
                 <div class="Income" id="Incomes-open">
                     <button class="btn btn-success"  onclick="OpenIncomeWindow();" id="option1">Incomes</button>
@@ -158,12 +158,22 @@
 
         <!--Go to history-->
         <div class="go-to-history">
-            <button class="btn btn-primary" id="open-history-btn" onclick="OpenHistoryWindow();">Go to history page!</button>
+            <button class="btn btn-primary" id="open-history-btn" onclick="OpenHistoryWindow();
+            show_total_profit(); show_rest_of_money();">Go to history page!</button>
         </div>
 
         <!--History page-->
-        <div class="history" id="history" style="display: none;">
-            <h1>History page</h1>
+        <div class="history col-sm-12" id="history" style="display: none;">
+            <div class="incomes-history-page col-sm-12">
+                <h1 id="show-total-profit">Your incomes will be here</h1>
+            </div>
+            <div class="expenses-history-page col-sm-12">
+                <h1 id="show-rest-money">Your expenses will be here</h1>
+            </div>
+            <div class="debts-history-page col-sm-12">
+                <h1>Your debts will be here</h1>
+            </div>
+
         </div>
     </div>
 </div>

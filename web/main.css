@@ -167,7 +167,40 @@ button:active, button:focus {
 	text-align: center;
 }
 
+
 .go-back-btn{
 	float: left;
-	margin-left: -85px;
+
+}
+.history{
+	width: 100%;
+	height: 100%;
+	margin-top: 50px;
+	background-color: #fff;
+}
+
+.incomes-history-page{
+	width: 100%;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: green;
+}
+
+.expenses-history-page{
+	width: 100%;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F8D7DA;
+	border: 2px solid #F5C2C7;
+	border-radius: 3px;
+}
+
+.debts-history-page{
+	width: 100%;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: gray;
 }
