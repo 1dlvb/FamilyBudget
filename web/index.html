@@ -158,21 +158,25 @@
 
         <!--Go to history-->
         <div class="go-to-history">
-            <button class="btn btn-secondary" id="open-history-btn" onclick="OpenHistoryWindow();
-            show_total_profit(); show_rest_of_money();">Go to history page!</button>
+            <button class="btn btn-secondary" id="open-history-btn" onclick="OpenHistoryWindow(); show_total_month_profit();
+            show_month_rest_of_money(); show_total_month_expenses();">Go to history page!</button>
         </div>
 
         <!--History page-->
         <div class="history col-sm-12" id="history" style="display: none;">
             <div class="incomes-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
-                <h1 class="history-headers"id="show-total-profit">Your incomes will be here</h1>
+                <h1 class=""id="show-total-month-profit">Your incomes will be here</h1>
             </div>
             <div class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
-                <h1 id="show-rest-money">Your expenses will be here</h1>
+                <h1 id="show-total-mouth-expenses">Your expenses will be here</h1>
+            </div>
+            <div class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
+                <h1 id="show-month-rest-money">Your expenses will be here</h1>
             </div>
             <div class="debts-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
                 <h1>Your debts will be here</h1>
             </div>
+
 
         </div>
     </div>

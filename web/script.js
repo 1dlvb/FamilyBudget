@@ -4,13 +4,14 @@ var a = 1;
 var nowDate = new Date().toISOString().slice(0, 10);
 
 function OpenIncomeWindow()
-{	
+{		
+	document.getElementById("ExpenseWindow").style.display = "none";
+	document.getElementById("DebtWindow").style.display = "none";
+	document.getElementById("open-history-btn").style.display = 'none';
 
 	if(a==1)
 	{
 		document.getElementById("IncomeWindow").style.display = "block";
-
-		//history button
 		document.getElementById("open-history-btn").style.display = 'none';
 		return a = 0;
 	}
@@ -181,6 +182,8 @@ function isEmpty(str){
 	}
 }
 
+
+
 function clear_values_incomes(){
 	document.getElementById('inputTagSelectInc').value = 'Salary';
 	document.getElementById('amountOfMoneyGet').value = '';
@@ -292,16 +295,24 @@ function CloseHistoryWindow()
 
 }
 
-async function show_total_profit(){
+async function show_total_month_profit(){
 	//total profit
-	var profit = await eel.show_total_profit_py()();
-	document.getElementById("show-total-profit").innerHTML = "Your income: " + profit + " ₽";
+	var profit = await eel.show_total_month_profit_py()();
+	document.getElementById("show-total-month-profit").innerHTML = "Your incomes: " + profit.toFixed(2) + " ₽";
 	console.log(profit);	
+}
+
+async function show_total_month_expenses(){
+	//total spent
+	var expense = await eel.show_total_month_expenses_py()();
+	document.getElementById("show-total-mouth-expenses").innerHTML = "Your expenses: " + expense.toFixed(2) + " ₽";
+	console.log(expense);	
 
 }
 
-async function show_rest_of_money(){
-	var rest = await eel.show_rest_money_py()();
-	document.getElementById("show-rest-money").innerHTML = "Rest of money: " + rest + " ₽";
+async function show_month_rest_of_money(){
+	//rest
+	var rest = await eel.show_month_rest_money_py()();
+	document.getElementById("show-month-rest-money").innerHTML = "Rest of money: " + rest.toFixed(2) + " ₽";
 	console.log(rest);
 }

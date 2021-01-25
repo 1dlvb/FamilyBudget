@@ -10,8 +10,12 @@ with sq.connect("family_budget.db") as db:
     # budget table
     cur.execute("""CREATE TABLE IF NOT EXISTS budget(
            id INTEGER PRIMARY KEY AUTOINCREMENT,
-           rest_money REAL DEFAULT 0 NOT NULL, 
-           profit REAL DEFAULT 0 NOT NULL
+           month_spent REAL DEFAULT 0 NOT NULL, 
+           month_rest REAL DEFAULT 0 NOT NULL, 
+           month_profit REAL DEFAULT 0 NOT NULL,
+           
+           year_spent REAL DEFAULT 0 NOT NULL, 
+           year_profit REAL DEFAULT 0 NOT NULL
            
 
        )""")
@@ -44,7 +48,8 @@ with sq.connect("family_budget.db") as db:
         ) """)
 
     if cur.execute("SELECT Count() FROM budget").fetchone()[0] <= 0:
-        cur.execute("INSERT INTO budget (rest_money, profit) VALUES (?, ?)", (0, 0))
+        cur.execute("INSERT INTO budget (month_spent, month_rest, month_profit,"
+                    " year_spent, year_profit) VALUES (?, ?, ?, ?, ?)", (0, 0, 0, 0, 0))
 
 """MAIN LOGIC"""
 eel.init('web')
@@ -83,10 +88,13 @@ def get_num_of_rows_budget():                            # Get number of budget 
     return number_of_rows_budget
 
 
+# Shorten the date
 def shorten_the_date_list(date_to_shorten):
-    date_to_shorten = str(date_to_shorten).split(' ')
-    shorted_date = date_to_shorten[0].split('-')
-    print("Shorted date is {0}". format(shorted_date))
+    if len(str(date_to_shorten)) > 10:
+        date_to_shorten = str(date_to_shorten).split(' ')
+        shorted_date = date_to_shorten[0].split('-')
+    else:
+        shorted_date = date_to_shorten.split('-')
     return shorted_date
 
 
@@ -131,26 +139,58 @@ def l_id_debts():
 now = datetime.now()
 shorten_the_date_list(now)
 
+
+# Checking whether the month matches the current one
+def does_the_match_month(date, current_date):
+    s_now = shorten_the_date_list(current_date)
+    s_date = shorten_the_date_list(date)
+
+    if (s_now[0] != s_date[0]) or ((s_now[0] >= s_date[0]) and (s_now[1] < s_date[1])):
+        match_or_not = False
+    else:
+        match_or_not = True
+    return match_or_not
+
+
+def does_the_match_year(date, current_date):
+    s_now = shorten_the_date_list(current_date)
+    s_date = shorten_the_date_list(date)
+
+    if s_now[0] != s_date[0]:
+        match_or_not = False
+    else:
+        match_or_not = True
+    return match_or_not
+
+
 # JavaScript functions
 # incomes logic. tag, profit, date
 @eel.expose
 def incomes_py(tag_inc_js, amg_js, date_js_inc):
     tag = tag_inc_js
     amount = round(float(amg_js), 2)
-    date = str((date_js_inc))
+    date = str(date_js_inc)
     num_of_rows = get_num_of_rows_inc()
 
     # add values to database
     cur.execute("INSERT INTO incomes (tag_incomes, profit_amount, date_income) VALUES (?, ?, ?)", (tag, amount, date))
     db.commit()
 
-    if num_of_rows > 0:
+    # month
+    if (num_of_rows > 0) and (does_the_match_month(date, now) is True):
         amount = cur.execute("SELECT profit_amount FROM incomes WHERE id=?", [l_id_inc()]).fetchone()[0]
         print("AMOUNT IS: {0}".format(amount))
-        cur.execute("UPDATE budget SET profit = profit + (?)", [amount])
+        cur.execute("UPDATE budget SET month_profit = month_profit + (?)", [amount])
         db.commit()
     else:
-        print("Table is empty!")
+        print("Inc problem!")
+
+    # year
+    if (num_of_rows > 0) and (does_the_match_month(date, now) is True):
+        cur.execute("UPDATE budget SET year_profit = year_profit + (?)", [amount])
+        db.commit()
+
+    show_month_rest_money_py()
 
     print(tag, date, amount)
     return tag, amount, date
@@ -161,37 +201,30 @@ def incomes_py(tag_inc_js, amg_js, date_js_inc):
 def expenses_py(tag_exp_js, ams_js, date_js_exp):
     tag = tag_exp_js
     amount = round(float(ams_js), 2)
-    date = str((date_js_exp))
+    date = str(date_js_exp)
     num_of_rows = get_num_of_rows_exp()
 
     # add values to database
     cur.execute("INSERT INTO expenses (tag_expenses, spent_amount, date_expense) VALUES(?,?, ?)", (tag, amount, date))
     db.commit()
 
-    if num_of_rows > 0:
+    # month
+    if (num_of_rows > 0) and (does_the_match_month(date, now) is True):
         amount = cur.execute("SELECT spent_amount FROM expenses WHERE id=?", [l_id_exp()]).fetchone()[0]
         print("AMOUNT IS: {0}".format(amount))
-        cur.execute("UPDATE budget SET rest_money = rest_money + (?)", [amount])
+        cur.execute("UPDATE budget SET month_spent = month_spent + (?)", [amount])
         db.commit()
     else:
-        print("Table is empty!")
+        print("Exp problem!")
 
+    # year
+    if (num_of_rows > 0) and (does_the_match_month(date, now) is True):
+        cur.execute("UPDATE budget SET year_spent = year_spent + (?)", [amount])
+        db.commit()
+
+    show_month_rest_money_py()
     print(tag, amount, date)
     return tag, amount, date
-
-# Show total profit
-@eel.expose
-def show_total_profit_py():
-    return cur.execute("SELECT profit FROM budget").fetchone()[0]
-
-
-# total profit
-@eel.expose
-def show_rest_money_py():
-    profit = cur.execute("SELECT profit FROM budget").fetchone()[0]
-    amount_of_spent = cur.execute("SELECT rest_money FROM budget").fetchone()[0]
-    rest = profit - amount_of_spent
-    return rest
 
 
 # debts logic. tag, profit, date
@@ -199,15 +232,48 @@ def show_rest_money_py():
 def debts_py(moneylenders_name_js, amount_of_debt_js, date_js_debt):
     name = moneylenders_name_js
     amount = round(float(amount_of_debt_js), 2)
-    date = str((date_js_debt))
-
+    date = str(date_js_debt)
 
     # add values to database
     cur.execute("INSERT INTO debts (moneylenders_name, debt_amount, date_debt) VALUES(?,?, ?)", (name, amount, date))
     db.commit()
+    show_month_rest_money_py()
 
     print(name, amount, date)
     return name, amount, date
+
+
+# Show month total profit
+@eel.expose
+def show_total_month_profit_py():
+    # total month profit
+    return cur.execute("SELECT month_profit FROM budget").fetchone()[0]
+
+
+# Show month expenses
+@eel.expose
+def show_total_month_expenses_py():
+    # total month expenses
+    return cur.execute("SELECT month_spent FROM budget").fetchone()[0]
+
+
+# Show month rest of money
+@eel.expose
+def show_month_rest_money_py():
+    # Get total month profit
+    profit = cur.execute("SELECT month_profit FROM budget").fetchone()[0]
+
+    # Get total month expenses
+    amount_of_spent = cur.execute("SELECT month_spent FROM budget").fetchone()[0]
+
+    # Add rest of money to DB
+    res = round(float(profit - amount_of_spent), 2)
+    cur.execute("UPDATE budget SET month_rest = (?)", (res, ))
+    db.commit()
+    # Get rest of money from DB
+    rest = cur.execute("SELECT month_rest FROM budget").fetchone()[0]
+    print(rest)
+    return rest
 
 
 eel.start('index.html', size=(750, 900))
