@@ -213,7 +213,7 @@ function OpenHistoryWindow()
 	document.getElementById("Expenses-open").style.display = "none";
 	document.getElementById("Debts-open").style.display = "none";
 	document.getElementById("open-history-btn").style.display = 'none';
-	document.getElementById("go-back-btn").style.display = 'block';
+	document.getElementById("go-home-btn").style.display = 'block';
 	document.getElementById("header").style.display = 'none';
 	
 	//history page
@@ -254,7 +254,7 @@ function CloseHistoryWindow()
 	document.getElementById("Expenses-open").style.display = "inline-block";
 	document.getElementById("Debts-open").style.display = "inline-block";
 	document.getElementById("open-history-btn").style.display = 'inline-block';
-	document.getElementById("go-back-btn").style.display = 'none';
+	document.getElementById("go-home-btn").style.display = 'none';
 	document.getElementById("header").style.display = 'block';
 
 
@@ -295,6 +295,19 @@ function CloseHistoryWindow()
 
 }
 
+function CloseLearnMoreWindow(){
+	document.getElementById("go-home-btn").style.display = 'block';
+	document.getElementById("go-back-btn").style.display = 'none';
+	document.getElementById("history").style.display = 'block';
+	document.querySelector("#learn-more-incomes").style.display = 'none';
+	document.querySelector("#learn-more-expenses").style.display = 'none';
+
+
+
+
+}
+
+//money funcs 
 async function show_total_month_profit(){
 	//total profit
 	var profit = await eel.show_total_month_profit_py()();
@@ -315,4 +328,31 @@ async function show_month_rest_of_money(){
 	var rest = await eel.show_month_rest_money_py()();
 	document.getElementById("show-month-rest-money").innerHTML = "Rest of money: " + rest.toFixed(2) + " ₽";
 	console.log(rest);
+}
+//
+
+
+function learn_more_incomes(){
+	document.getElementById("history").style.display = 'none';
+	document.getElementById("go-home-btn").style.display = 'none';
+	document.getElementById("go-back-btn").style.display = 'block';
+
+	document.querySelector("#learn-more-incomes").style.display = 'block';
+}
+
+function learn_more_expenses(){
+	document.getElementById("history").style.display = 'none';
+	document.getElementById("go-home-btn").style.display = 'none';
+	document.getElementById("go-back-btn").style.display = 'block';
+
+	document.querySelector("#learn-more-expenses").style.display = 'block';
+}
+
+function get_data_from_learn_more_inc(){
+	// var month = new Date(document.querySelector("#alert-learn-more-inc").value).get;
+	// var year = new Date(document.querySelector("#alert-learn-more-inc").value).getUTCFullYear(); 
+	// console.log(month)
+	// console.log(year)
+	console.log(true)
+
 }

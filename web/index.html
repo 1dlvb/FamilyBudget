@@ -27,7 +27,9 @@
 <div class="container">
     <div class="main">
         <!--Go back button-->
-        <button class="go-back-btn btn btn-secondary col-md-1" id="go-back-btn" onclick="CloseHistoryWindow();" style="display:none;">Go back</button>
+        <button class="go-home-btn btn btn-secondary col-md-1" id="go-home-btn" onclick="CloseHistoryWindow();" style="display:none;">Go home</button>
+        <button class="go-back-btn btn btn-secondary col-md-1" id="go-back-btn" onclick="CloseLearnMoreWindow();" style="display:none;">Go back</button>
+
         <h1 id="header">Family Budget</h1>
         <div class="inc-or-exp">
                 <div class="Income" id="Incomes-open">
@@ -164,20 +166,52 @@
 
         <!--History page-->
         <div class="history col-sm-12" id="history" style="display: none;">
-            <div class="incomes-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
-                <h1 class=""id="show-total-month-profit">Your incomes will be here</h1>
+
+            <div id="incomes-history" style="cursor: pointer;" class="incomes-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12"
+            onclick="learn_more_incomes();">
+                <h1 class="" id="show-total-month-profit">Your incomes will be here</h1>
             </div>
-            <div class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
+
+
+            <div id="expenses-history" style="cursor: pointer;" onclick="learn_more_expenses();" class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
                 <h1 id="show-total-mouth-expenses">Your expenses will be here</h1>
             </div>
-            <div class="expenses-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
+
+            <div id="rest-history" class="rest-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12">
                 <h1 id="show-month-rest-money">Your expenses will be here</h1>
             </div>
-            <div class="debts-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">
-                <h1>Your debts will be here</h1>
+
+<!--            <div class="debts-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">-->
+<!--                <h1>Your debts will be here</h1>-->
+<!--            </div>-->
+
+
+        </div>
+
+        <!--Learn More incomes page -->
+        <div class="learn-more" id="learn-more-incomes" style="display: none;">
+            <h1>Learn more about incomes</h1>
+
+            <div class="date">
+                <div class="input-group">
+                    <input class="form-control date mt-5" id="income-month" value="2021-01" type="month" onkeydown="return false" placeholder="Enter the date...">
+                </div>
             </div>
+            <div class="alert alert-danger" role="alert" id="alert-learn-more-inc" style="display: none">
+                Error! Check that the entered data is correct!
+            </div>
+            <button onclick="get_data_from_learn_more_inc()" class="btn btn-secondary">Send</button>
+        </div>
 
+        <!--Learn More incomes page -->
+        <div class="learn-more" id="learn-more-expenses" style="display: none;">
+            <h1>Learn more about expenses</h1>
 
+            <div class="date">
+                <div class="input-group">
+                    <input class="form-control date mt-5" id="expense-month" value="2021-01" type="month" onkeydown="return false" placeholder="Enter the date...">
+                </div>
+            </div>
         </div>
     </div>
 </div>
