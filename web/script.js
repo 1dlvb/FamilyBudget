@@ -2,6 +2,13 @@ var a = 1;
 
 //now Date
 var nowDate = new Date().toISOString().slice(0, 10);
+var nowDate_ = new Date()
+var nowYear = nowDate_.getFullYear();
+var nowMonth = nowDate_.getMonth() + 1;
+var nowDay = nowDate_.getDay();
+console.log(nowYear)
+console.log(nowMonth)
+console.log(nowDay)
 
 function OpenIncomeWindow()
 {		
@@ -349,10 +356,33 @@ function learn_more_expenses(){
 }
 
 function get_data_from_learn_more_inc(){
-	// var month = new Date(document.querySelector("#alert-learn-more-inc").value).get;
-	// var year = new Date(document.querySelector("#alert-learn-more-inc").value).getUTCFullYear(); 
-	// console.log(month)
-	// console.log(year)
-	console.log(true)
+	document.getElementById("alert-learn-more-inc").style.display = 'none';
+	var date = new Date(document.querySelector("#income-month").value);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1; 
+	if (month < 10) {
+
+		month = '0' + month;
+	}
+	else{
+		month = "" + month;
+	}
+
+	if ((year > nowYear) || (month < nowMonth && year < nowYear) || 
+		(month != nowMonth && year >= nowYear))
+	{
+		
+		document.getElementById("alert-learn-more-inc").style.display = 'block';
+		
+	}
+	else {
+		console.log(year);
+		console.log(month);
+		document.getElementById("alert-learn-more-inc").style.display = 'none';
+		document.getElementById("income-month").value = "2018-01";
+		
+		
+	}
+	
 
 }
