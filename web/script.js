@@ -351,6 +351,7 @@ function learn_more_incomes(){
 	document.getElementById("go-back-btn").style.display = 'block';
 
 	document.querySelector("#learn-more-incomes").style.display = 'block';
+
 }
 
 function learn_more_expenses(){
@@ -363,7 +364,7 @@ function learn_more_expenses(){
 
 function get_data_from_learn_more_inc(){
 	document.getElementById("alert-learn-more-inc").style.display = 'none';
-	var date = new Date(document.querySelector("#income-month").value);
+	var date = new Date(document.querySelector("#select-month-income").value);
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1; 
 	if (month < 10) {
@@ -382,10 +383,11 @@ function get_data_from_learn_more_inc(){
 		
 	}
 	else {
-		console.log(year);
 		console.log(month);
+		console.log(year);
+		eel.data_from_selected_m_y_py(month, year, "inc")
 		document.getElementById("alert-learn-more-inc").style.display = 'none';
-		document.getElementById("income-month").value = "2018-01";
+		document.getElementById("select-month-income").value = "2018-01";
 		
 		
 	}

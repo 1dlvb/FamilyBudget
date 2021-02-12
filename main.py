@@ -25,7 +25,7 @@ with sq.connect("family_budget.db") as db:
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         tag_incomes TEXT DEFAULT 'Salary',
         profit_amount REAL DEFAULT 0,
-        date_income TEXT NOT NULL
+        date TEXT NOT NULL
 
     )""")
 
@@ -34,7 +34,7 @@ with sq.connect("family_budget.db") as db:
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         tag_expenses TEXT DEFAULT 'Other',
         spent_amount REAL DEFAULT 0,
-        date_expense TEXT NOT NULL
+        date TEXT NOT NULL
 
     ) """)
 
@@ -43,7 +43,7 @@ with sq.connect("family_budget.db") as db:
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         moneylenders_name TEXT DEFAULT '',
         debt_amount REAL DEFAULT 0,
-        date_debt TEXT NOT NULL
+        date TEXT NOT NULL
 
         ) """)
 
@@ -173,7 +173,7 @@ def incomes_py(tag_inc_js, amg_js, date_js_inc):
     num_of_rows = get_num_of_rows_inc()
 
     # add values to database
-    cur.execute("INSERT INTO incomes (tag_incomes, profit_amount, date_income) VALUES (?, ?, ?)", (tag, amount, date))
+    cur.execute("INSERT INTO incomes (tag_incomes, profit_amount, date) VALUES (?, ?, ?)", (tag, amount, date))
     db.commit()
 
     # month
@@ -205,7 +205,7 @@ def expenses_py(tag_exp_js, ams_js, date_js_exp):
     num_of_rows = get_num_of_rows_exp()
 
     # add values to database
-    cur.execute("INSERT INTO expenses (tag_expenses, spent_amount, date_expense) VALUES(?,?, ?)", (tag, amount, date))
+    cur.execute("INSERT INTO expenses (tag_expenses, spent_amount, date) VALUES(?,?, ?)", (tag, amount, date))
     db.commit()
 
     # month
@@ -235,7 +235,7 @@ def debts_py(moneylenders_name_js, amount_of_debt_js, date_js_debt):
     date = str(date_js_debt)
 
     # add values to database
-    cur.execute("INSERT INTO debts (moneylenders_name, debt_amount, date_debt) VALUES(?,?, ?)", (name, amount, date))
+    cur.execute("INSERT INTO debts (moneylenders_name, debt_amount, date) VALUES(?,?, ?)", (name, amount, date))
     db.commit()
     show_month_rest_money_py()
 
@@ -275,10 +275,62 @@ def show_month_rest_money_py():
     print(rest)
     return rest
 
+
 # Get data from selected month and year
 @eel.expose
-def data_from_selected_m_y_py(date_js):
-    pass
+def data_from_selected_m_y_py(selected_month_js, selected_year_js, where):
+    i = 0
+    s_dates = []
+    split_date = []
+
+    print(selected_month_js, selected_year_js, where)
+    if where == "inc":
+        # get all dates from incomes
+        dates = cur.execute("SELECT date FROM incomes").fetchall()
+
+        for value in dates:
+            for value1 in value:
+                s_dates.append(value1)
+
+        while i < len(s_dates):
+            if i <= len(s_dates):
+                split_date.append(shorten_the_date_list(s_dates[i]))
+
+            # checking for a date match
+            if (shorten_the_date_list(s_dates[i])[1] == str(selected_month_js)) and \
+                    (shorten_the_date_list(s_dates[i])[0] == str(selected_year_js)):
+
+                is_m_and_y_match = True
+                print(s_dates[i] + ' ' + str(is_m_and_y_match))
+            else:
+                is_m_and_y_match = False
+                print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+            i += 1
+
+    else:
+        # get all dates from expenses
+        dates = cur.execute("SELECT date FROM expenses").fetchall()
+
+        for value in dates:
+            for value1 in value:
+                s_dates.append(value1)
+
+        while i < len(s_dates):
+            if i <= len(s_dates):
+                split_date.append(shorten_the_date_list(s_dates[i]))
+
+            # checking for a date match
+            if (shorten_the_date_list(s_dates[i])[1] == str(selected_month_js)) and \
+                    (shorten_the_date_list(s_dates[i])[0] == str(selected_year_js)):
+
+                is_m_and_y_match = True
+                print(s_dates[i] + ' ' + str(is_m_and_y_match))
+            else:
+                is_m_and_y_match = False
+                print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+            i += 1
 
 
 eel.start('index.html', size=(750, 900))
