@@ -275,5 +275,10 @@ def show_month_rest_money_py():
     print(rest)
     return rest
 
+# Get data from selected month and year
+@eel.expose
+def data_from_selected_m_y_py(date_js):
+    pass
+
 
 eel.start('index.html', size=(750, 900))

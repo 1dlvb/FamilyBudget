@@ -318,14 +318,14 @@ function CloseLearnMoreWindow(){
 async function show_total_month_profit(){
 	//total profit
 	var profit = await eel.show_total_month_profit_py()();
-	document.getElementById("show-total-month-profit").innerHTML = "Your incomes: " + profit.toFixed(2) + " ₽";
+	document.getElementById("show-total-month-profit").innerHTML = "Your incomes </br> this month: " + profit.toFixed(2) + " ₽";
 	console.log(profit);	
 }
 
 async function show_total_month_expenses(){
 	//total spent
 	var expense = await eel.show_total_month_expenses_py()();
-	document.getElementById("show-total-mouth-expenses").innerHTML = "Your expenses: " + expense.toFixed(2) + " ₽";
+	document.getElementById("show-total-mouth-expenses").innerHTML = "Your expenses </br> this month: " + expense.toFixed(2) + " ₽";
 	console.log(expense);	
 
 }
@@ -333,6 +333,12 @@ async function show_total_month_expenses(){
 async function show_month_rest_of_money(){
 	//rest
 	var rest = await eel.show_month_rest_money_py()();
+	if (rest.toFixed(2) < 0) {
+		document.getElementById("show-month-rest-money").style.color="#6F0000"; 
+	}else {
+		document.getElementById("show-month-rest-money").style.color="#fff"; 
+		
+	}
 	document.getElementById("show-month-rest-money").innerHTML = "Rest of money: " + rest.toFixed(2) + " ₽";
 	console.log(rest);
 }
@@ -368,8 +374,8 @@ function get_data_from_learn_more_inc(){
 		month = "" + month;
 	}
 
-	if ((year > nowYear) || (month < nowMonth && year < nowYear) || 
-		(month != nowMonth && year >= nowYear))
+	if ((year > nowYear) || (month < nowMonth && year > nowYear) || 
+		(month > nowMonth && year >= nowYear))
 	{
 		
 		document.getElementById("alert-learn-more-inc").style.display = 'block';
