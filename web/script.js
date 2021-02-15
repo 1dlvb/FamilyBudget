@@ -394,3 +394,35 @@ function get_data_from_learn_more_inc(){
 	
 
 }
+function get_data_from_learn_more_exp(){
+	document.getElementById("alert-learn-more-exp").style.display = 'none';
+	var date = new Date(document.querySelector("#select-month-expense").value);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1; 
+	if (month < 10) {
+
+		month = '0' + month;
+	}
+	else{
+		month = "" + month;
+	}
+
+	if ((year > nowYear) || (month < nowMonth && year > nowYear) || 
+		(month > nowMonth && year >= nowYear))
+	{
+		
+		document.getElementById("alert-learn-more-exp").style.display = 'block';
+		
+	}
+	else {
+		console.log(month);
+		console.log(year);
+		eel.data_from_selected_m_y_py(month, year, "exp")
+		document.getElementById("alert-learn-more-exp").style.display = 'none';
+		document.getElementById("select-month-expense").value = "2018-01";
+		
+		
+	}
+	
+
+}
