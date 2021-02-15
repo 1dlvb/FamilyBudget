@@ -14,7 +14,7 @@ with sq.connect("family_budget.db") as db:
            month_rest REAL DEFAULT 0 NOT NULL, 
            month_profit REAL DEFAULT 0 NOT NULL,
            selected_month_profit REAL DEFAULT 0 NOT NULL,
-           selected_month_spent REAL DEFAULT 0 NOT NULL,
+           selected_month_cost REAL DEFAULT 0 NOT NULL,
 
            
            year_spent REAL DEFAULT 0 NOT NULL, 
@@ -285,7 +285,6 @@ def show_month_rest_money_py():
 @eel.expose
 def data_from_selected_m_y_py(selected_month_js, selected_year_js, where):
     i = 0
-    j = 0
     s_dates = []
     split_date = []
 
@@ -337,7 +336,8 @@ def data_from_selected_m_y_py(selected_month_js, selected_year_js, where):
                             selected_inc_id.append(value2)
                 unique_selected_inc_id = list(set(selected_inc_id))
             else:
-                pass
+                cur.execute("UPDATE budget SET selected_month_profit = (?)", [0])
+                db.commit()
             i += 1
         print(unique_selected_inc_id)
 
@@ -388,7 +388,9 @@ def data_from_selected_m_y_py(selected_month_js, selected_year_js, where):
                             selected_exp_id.append(value2)
                 unique_selected_exp_id = list(set(selected_exp_id))
             else:
-                pass
+                cur.execute("UPDATE budget SET selected_month_cost = (?)", [0])
+                db.commit()
+
             i += 1
         print(unique_selected_exp_id)
 
@@ -402,13 +404,22 @@ def data_from_selected_m_y_py(selected_month_js, selected_year_js, where):
                 for value2 in value1:
                     total_month_expenses += value2
                     print(total_month_expenses)
-                    cur.execute("UPDATE budget SET selected_month_spent = (?)", [total_month_expenses])
+                    cur.execute("UPDATE budget SET selected_month_cost = (?)", [total_month_expenses])
                     db.commit()
-# @eel.expose
-# def show_for_selected_month(where):
-#     if where == "inc":
-#         pass
-#     else:
-#         cur.execute("SELECT selected_month_cost")
+
+
+# show incomes for selected month
+@eel.expose
+def show_selected_month_incomes_py():
+    return cur.execute("SELECT selected_month_profit FROM budget").fetchone()[0]
+
+
+# show expenses for selected month
+@eel.expose
+def show_selected_month_expenses_py():
+    return cur.execute("SELECT selected_month_cost FROM budget").fetchone()[0]
+
+
+
 
 eel.start('index.html', size=(750, 900))

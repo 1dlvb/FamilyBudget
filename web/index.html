@@ -204,23 +204,26 @@
             <div class="alert alert-danger" role="alert" id="alert-learn-more-inc" style="display: none">
                 Error! Check that the entered data is correct!
             </div>
-            <button onclick="get_data_from_learn_more_inc()" class="btn btn-secondary">Send</button>
+            <button onclick="get_data_from_learn_more_inc(); show_selected_month_incomes();" class="btn btn-secondary">Send</button>
+            <div id="show-data-inc" class="show-data bg-secondary mt-5 justify-content-center align-items-center col-sm-12" >
+                <h1 id="show-inc">Incomes for the selected month: </h1>
+            </div>
         </div>
 
-        <!--Learn More incomes page -->
+        <!--Learn More expenses page -->
         <div class="learn-more" id="learn-more-expenses" style="display: none;">
             <h1>Learn more about expenses</h1>
 
-            <div class="date justify-content-center align-items-center">
+            <div class="date">
                 <div class="input-group">
                     <input class="form-control date date-month mt-5" id="select-month-expense" value="2021-01" type="month" onkeydown="return false" placeholder="Enter the date...">
                 </div>
-                 <div class="alert alert-danger" role="alert" id="alert-learn-more-exp" style="display: none">
-                    Error! Check that the entered data is correct!
-                 </div>
-                <button onclick="get_data_from_learn_more_exp()" class="btn btn-secondary">Send</button>
             </div>
-            <div class="show-data bg-secondary mt-5 d-flex justify-content-center align-items-center col-sm-12">
+            <div class="alert alert-danger" role="alert" id="alert-learn-more-exp" style="display: none">
+                Error! Check that the entered data is correct!
+            </div>
+            <button onclick="get_data_from_learn_more_exp(); show_selected_month_expenses();" class="btn btn-secondary">Send</button>
+            <div id="show-data-exp" class="show-data bg-secondary mt-5 justify-content-center align-items-center col-sm-12" >
                 <h1 id="show-exp">Expenses for the selected month: </h1>
             </div>
         </div>
