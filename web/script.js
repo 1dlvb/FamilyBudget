@@ -381,13 +381,14 @@ function get_data_from_learn_more_inc(){
 		
 		document.getElementById("alert-learn-more-inc").style.display = 'block';
 		document.getElementById("show-data-inc").style.display = 'none';
+
 		
 	}
 	else {
 		document.getElementById("show-data-inc").style.display = 'flex';
 		console.log(month);
 		console.log(year);
-		eel.data_from_selected_m_y_py(month, year, "inc")
+		eel.get_and_show_selected_month_data_py(month, year, "inc")
 		document.getElementById("alert-learn-more-inc").style.display = 'none';		
 		
 	}
@@ -421,21 +422,34 @@ function get_data_from_learn_more_exp(){
 		document.getElementById("show-data-exp").style.display = 'flex';
 		console.log(month);
 		console.log(year);
-		eel.data_from_selected_m_y_py(month, year, "exp")
+
+		eel.get_and_show_selected_month_data_py(month, year, "exp")
+		
 		document.getElementById("alert-learn-more-exp").style.display = 'none';
 	}
 }
 
 async function show_selected_month_incomes(){
 	//selected month profit
-	var profit = await eel.show_selected_month_incomes_py()();
-	document.getElementById("show-inc").innerHTML = "Incomes for the selected month: </br>" + profit.toFixed(2) + " ₽";
-	console.log(profit);
+	let arr =  await eel.show_selected_month_incomes_py()();	
+	console.log(arr)
+	profit = arr[0]
+	data = arr[1]
+	document.getElementById("show-inc").innerHTML = "All incomes for the selected month: </br>" + profit.toFixed(2) + " ₽";
+
+	console.log(profit)
+	console.log(data)
+
 }
 
 async function show_selected_month_expenses(){
 	//selected month cost
-	var cost = await eel.show_selected_month_expenses_py()();
-	document.getElementById("show-exp").innerHTML = "Expenses for the selected month: </br>" + cost.toFixed(2) + " ₽";
-	console.log(cost);
+	let arr =  await eel.show_selected_month_data_py()();	
+	cost = arr[0]
+	data = arr[1]
+	document.getElementById("show-exp").innerHTML = "All expenses for the selected month: </br>" + cost.toFixed(2) + " ₽";
+
+	console.log(cost)
+	console.log(data)
+
 }
