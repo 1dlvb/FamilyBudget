@@ -252,14 +252,115 @@ def debts_py(moneylenders_name_js, amount_of_debt_js, date_js_debt):
 @eel.expose
 def show_total_month_profit_py():
     # total month profit
-    return cur.execute("SELECT month_profit FROM budget").fetchone()[0]
+    now = datetime.now()
+    s_dates = []
+    split_date = []
+    selected_id = []
+    unique_selected_id = []
+    profit = 0
+    s_profit = 0
 
+    print(now)
+
+    dates = cur.execute("SELECT date FROM incomes").fetchall()
+    for value in dates:
+        for value1 in value:
+            s_dates.append(value1)
+    i = 0
+    while i < len(s_dates):
+        if i <= len(s_dates):
+            split_date.append(shorten_the_date_list(s_dates[i]))
+
+        # checking for a date match
+        if shorten_the_date_list(s_dates[i])[1] == str(shorten_the_date_list(now)[1]) and \
+                (shorten_the_date_list(s_dates[i])[0] == str(shorten_the_date_list(now)[0])):
+
+            is_m_and_y_match = True
+
+            print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+        else:
+            is_m_and_y_match = False
+            print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+        if is_m_and_y_match is True:
+            id = cur.execute("SELECT id FROM incomes WHERE date = (?)", [s_dates[i]]).fetchall()
+            for value in id:
+                for value1 in value:
+                    selected_id.append(value1)
+            unique_selected_id = list(set(selected_id))
+        else:
+            s_profit = 0
+        i += 1
+    i = 0
+    while i < len(unique_selected_id):
+        profit = cur.execute("SELECT spent_amount FROM expenses WHERE id = (?)", [unique_selected_id[i]]).fetchall()
+        for value in profit:
+            for value1 in value:
+                s_profit += value1
+
+        i += 1
+    print("PROFIT IS {0}".format(s_profit))
+    cur.execute("UPDATE budget SET month_profit = (?)", [s_profit])
+    db.commit()
+    return s_profit
 
 # Show month expenses
 @eel.expose
 def show_total_month_expenses_py():
     # total month expenses
-    return cur.execute("SELECT month_spent FROM budget").fetchone()[0]
+    now = datetime.now()
+    s_dates = []
+    split_date = []
+    selected_id = []
+    unique_selected_id = []
+    cost = 0
+    s_cost = 0
+
+    print(now)
+
+    dates = cur.execute("SELECT date FROM expenses").fetchall()
+    for value in dates:
+        for value1 in value:
+            s_dates.append(value1)
+    i = 0
+    while i < len(s_dates):
+        if i <= len(s_dates):
+            split_date.append(shorten_the_date_list(s_dates[i]))
+
+        # checking for a date match
+        if shorten_the_date_list(s_dates[i])[1] == str(shorten_the_date_list(now)[1]) and \
+                (shorten_the_date_list(s_dates[i])[0] == str(shorten_the_date_list(now)[0])):
+
+            is_m_and_y_match = True
+
+            print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+        else:
+            is_m_and_y_match = False
+            print(s_dates[i] + ' ' + str(is_m_and_y_match))
+
+        if is_m_and_y_match is True:
+            id = cur.execute("SELECT id FROM expenses WHERE date = (?)", [s_dates[i]]).fetchall()
+            for value in id:
+                for value1 in value:
+                    selected_id.append(value1)
+            unique_selected_id = list(set(selected_id))
+        else:
+            s_cost = 0
+        i += 1
+    i = 0
+    while i < len(unique_selected_id):
+        cost = cur.execute("SELECT spent_amount FROM expenses WHERE id = (?)", [unique_selected_id[i]]).fetchall()
+        for value in cost:
+            for value1 in value:
+                s_cost += value1
+
+        i += 1
+    print("COST IS {0}".format(s_cost))
+    cur.execute("UPDATE budget SET month_spent = (?)", [s_cost])
+    db.commit()
+    return s_cost
 
 
 # Show month rest of money

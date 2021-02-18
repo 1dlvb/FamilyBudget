@@ -423,7 +423,7 @@ function get_data_from_learn_more_exp(){
 		console.log(month);
 		console.log(year);
 
-		eel.get_and_show_selected_month_data_py(month, year, "exp")
+		eel.get_and_show_selected_month_data_py(month, year, "exp");
 		
 		document.getElementById("alert-learn-more-exp").style.display = 'none';
 	}
@@ -432,24 +432,171 @@ function get_data_from_learn_more_exp(){
 async function show_selected_month_incomes(){
 	//selected month profit
 	let arr =  await eel.show_selected_month_incomes_py()();	
-	console.log(arr)
-	profit = arr[0]
-	data = arr[1]
-	document.getElementById("show-inc").innerHTML = "All incomes for the selected month: </br>" + profit.toFixed(2) + " ₽";
+	console.log(arr);
+	profit = arr[0];
+	data = arr[1];
+	document.getElementById("show-inc").innerHTML = "All income for the selected month: </br>" + profit.toFixed(2) + " ₽";
 
-	console.log(profit)
-	console.log(data)
+	let Salary_sum = 0;
+	let Upfront_sum = 0; 
+	let Pay_debt_sum = 0; 
+	let Found_sum = 0;
+	let Investment_sum = 0;
+	i = 0
+	var s_data = data.split(";");
+	while (i < s_data.length) {
+		var s_s_data = s_data[i].split(" ");
+		console.log(s_s_data);
+
+		if (s_s_data[0] == ''){
+			if (s_s_data[1] == 'Salary'){
+				Salary_sum += parseFloat(s_s_data[2]);
+			}
+			else if (s_s_data[1] == 'Upfront') {
+				Upfront_sum += parseFloat(s_s_data[2]);
+			}
+			else if (s_s_data[1] == 'Pay') {
+				Pay_debt_sum += parseFloat(s_s_data[3]);
+			}
+			else if (s_s_data[1] == 'Found') {
+				Found_sum += parseFloat(s_s_data[2]);
+			}
+			if (s_s_data[1] == 'Investment') {
+				Investment_sum += parseFloat(s_s_data[2]);
+			}
+			
+			
+			
+		}else{
+			if (s_s_data[0] == 'Salary'){
+				Salary_sum += parseFloat(s_s_data[1]);
+			}
+			else if (s_s_data[0] == 'Upfront') {
+				Upfront_sum += parseFloat(s_s_data[1]);
+			}
+			else if (s_s_data[0] == 'Pay') {
+				Pay_debt_sum += parseFloat(s_s_data[2]);
+			}
+			else if (s_s_data[0] == 'Found') {
+				Found_sum += parseFloat(s_s_data[1]);
+			}
+			if (s_s_data[0] == 'Investment') {
+				Investment_sum += parseFloat(s_s_data[1]);
+			}
+			
+		}
+
+		i++;
+	}
+document.getElementById("Salary-tag").innerHTML = "Salary: " + Salary_sum.toFixed(2) + " ₽";
+document.getElementById("Upfront-tag").innerHTML = "Upfront: " + Upfront_sum.toFixed(2) + " ₽";
+document.getElementById("Pay-debts-tag").innerHTML = "Pay debt: " + Pay_debt_sum.toFixed(2) + " ₽";
+document.getElementById("Found-tag").innerHTML = "Found: " + Found_sum.toFixed(2) + " ₽";
+document.getElementById("Investment-inc-tag").innerHTML = "Investment: " + Investment_sum.toFixed(2) + " ₽";
+
 
 }
 
 async function show_selected_month_expenses(){
 	//selected month cost
 	let arr =  await eel.show_selected_month_data_py()();	
-	cost = arr[0]
-	data = arr[1]
+	let cost = arr[0];
+	let data = arr[1];
 	document.getElementById("show-exp").innerHTML = "All expenses for the selected month: </br>" + cost.toFixed(2) + " ₽";
+	console.log(cost);
+	let Other_sum = 0;
+	let Credits_sum = 0; 
+	let Utility_bills_sum = 0; 
+	let Snacks_sum = 0;
+	let Food_sum = 0;
+	let Medical_sum = 0; 
+	let Investment_sum = 0; 
+	let Sport_sum = 0; 
 
-	console.log(cost)
-	console.log(data)
+
+	i = 0
+	var s_data = data.split(";");
+	while (i < s_data.length) {
+		var s_s_data = s_data[i].split(" ");
+		if (s_s_data[0] == ''){
+			if (s_s_data[1] == 'Other'){
+				Other_sum += parseFloat(s_s_data[2]);
+			}
+			else if (s_s_data[1] == 'Credits') {
+				Credits_sum += parseFloat(s_s_data[2]);
+			}
+			else if (s_s_data[1] == 'Utility'){
+				Utility_bills_sum += parseFloat(s_s_data[3]);
+
+			}
+			else if (s_s_data[1] == 'Snacks'){
+				Snacks_sum += parseFloat(s_s_data[2]);
+
+			}
+			else if (s_s_data[1] == 'Food'){
+				Food_sum += parseFloat(s_s_data[2]);
+
+			}
+			else if (s_s_data[1] == 'Medical'){
+				Medical_sum += parseFloat(s_s_data[2]);
+
+			}
+			else if (s_s_data[1] == 'Investment'){
+				Investment_sum += parseFloat(s_s_data[2]);
+
+			}
+
+			else if (s_s_data[1] == 'Sport'){
+				Sport_sum += parseFloat(s_s_data[2]);
+
+			}
+		}else{
+			if (s_s_data[0] == 'Other'){
+				Other_sum += parseFloat(s_s_data[1]);
+
+			}
+			else if (s_s_data[0] == 'Credits') {
+				Credits_sum += parseFloat(s_s_data[1]);
+			}
+			else if (s_s_data[0] == 'Utility'){
+				Utility_bills_sum += parseFloat(s_s_data[2]);
+
+			}
+			else if (s_s_data[0] == 'Snacks'){
+				Snacks_sum += parseFloat(s_s_data[1]);
+
+			}
+			else if (s_s_data[0] == 'Food'){
+				Food_sum += parseFloat(s_s_data[1]);
+
+			}
+			else if (s_s_data[0] == 'Medical'){
+				Medical_sum += parseFloat(s_s_data[1]);
+
+			}
+			else if (s_s_data[0] == 'Investment'){
+				Investment_sum += parseFloat(s_s_data[1]);
+
+			}
+
+			else if (s_s_data[0] == 'Sport'){
+				Sport_sum += parseFloat(s_s_data[1]);
+
+			}
+		}
+		
+		i++;
+	}
+
+	document.getElementById("Other-tag").innerHTML = "Other: " + Other_sum.toFixed(2) + " ₽";
+	document.getElementById("Credits-tag").innerHTML = "Credits: " + Credits_sum.toFixed(2) + " ₽";
+	document.getElementById("Utility-bills-tag").innerHTML = "Utility bills: " + Utility_bills_sum.toFixed(2) + " ₽";
+	document.getElementById("Snacks-tag").innerHTML = "Snacks: " + Snacks_sum.toFixed(2) + " ₽";
+	document.getElementById("Food-tag").innerHTML = "Food: " + Food_sum.toFixed(2) + " ₽";
+	document.getElementById("Medical-tag").innerHTML = "Medical: " + Medical_sum.toFixed(2) + " ₽";
+	document.getElementById("Investment-exp-tag").innerHTML = "Investment: " + Investment_sum.toFixed(2) + " ₽";
+	document.getElementById("Sport-tag").innerHTML = "Sport: " + Sport_sum.toFixed(2) + " ₽";
+
+
 
 }

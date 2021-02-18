@@ -53,9 +53,9 @@
 
 
 
-                <!--Incomes-->
+                <!--Income-->
                 <div id="IncomeWindow">
-                    <p class="incomes-header">Your Incomes Here</p>
+                    <p class="incomes-header">Your Income Here</p>
                        <div class="tag-input tags-inc">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputTagSelectInc">Tag</label>
@@ -173,7 +173,7 @@
 
             <div id="incomes-history" style="cursor: pointer;" class="incomes-history-page bg-secondary mb-5 d-flex justify-content-center align-items-center col-sm-12"
             onclick="learn_more_incomes();">
-                <h1 class="" id="show-total-month-profit">Your incomes will be here</h1>
+                <h1 class="" id="show-total-month-profit">Your income will be here</h1>
             </div>
 
 
@@ -185,16 +185,13 @@
                 <h1 id="show-month-rest-money">Your rest will be here</h1>
             </div>
 
-<!--            <div class="debts-history-page mb-5 bg-secondary d-flex justify-content-center align-items-center col-sm-12">-->
-<!--                <h1>Your debts will be here</h1>-->
-<!--            </div>-->
 
 
         </div>
 
-        <!--Learn More incomes page -->
+        <!--Learn More income page -->
         <div class="learn-more" id="learn-more-incomes" style="display: none;">
-            <h1>Learn more about incomes</h1>
+            <h1>Learn more about income</h1>
 
             <div class="date">
                 <div class="input-group">
@@ -206,11 +203,17 @@
             </div>
             <button onclick="get_data_from_learn_more_inc(); show_selected_month_incomes();" class="btn btn-secondary">Send</button>
             <div id="show-data-inc" class="show-data bg-secondary" >
-                <div class="by-tags">
-                    <p>By tags: </p>
+                <div id="by-tags" class="by-tags-inc">
+
+                    <p id="Salary-tag">Salary: </p>
+                    <p id="Upfront-tag">Upfront: </p>
+                    <p id="Pay-debts-tag">Pay debts: </p>
+                    <p id="Found-tag">Found: </p>
+                    <p id="Investment-inc-tag">Investment: </p>
+
                 </div>
                 <div class="all">
-                    <h1 id="show-inc">All incomes for the selected month: </h1>
+                    <h1 id="show-inc">All income for the selected month: </h1>
                 </div>
             </div>
         </div>
@@ -231,9 +234,19 @@
                 <button onclick="get_data_from_learn_more_exp(); show_selected_month_expenses();" class="btn btn-secondary">Send</button>
             </div>
 
+
             <div id="show-data-exp" class="show-data bg-secondary">
-                <div class="by-tags">
-                    <p>By tags: </p>
+
+                <div class="by-tags-exp">
+                    <br>
+                        <p class="tag-exp-selected-month" id="Other-tag">Other: </p>
+                        <p class="tag-exp-selected-month" id="Credits-tag">Credits: </p>
+                        <p class="tag-exp-selected-month" id="Utility-bills-tag">Utility bills: </p>
+                        <p class="tag-exp-selected-month" id="Snacks-tag">Snacks: </p>
+                        <p class="tag-exp-selected-month" id="Food-tag">Food: </p>
+                        <p class="tag-exp-selected-month" id="Medical-tag">Medical: </p>
+                        <p class="tag-exp-selected-month" id="Investment-exp-tag">Investment: </p>
+                        <p class="tag-exp-selected-month" id="Sport-tag">Sport: </p>
                 </div>
                 <div class="all">
                     <h1 id="show-exp">All expenses for the selected month: </h1>
