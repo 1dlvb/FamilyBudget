@@ -294,7 +294,7 @@ def show_total_month_profit_py():
         i += 1
     i = 0
     while i < len(unique_selected_id):
-        profit = cur.execute("SELECT spent_amount FROM expenses WHERE id = (?)", [unique_selected_id[i]]).fetchall()
+        profit = cur.execute("SELECT profit_amount FROM incomes WHERE id = (?)", [unique_selected_id[i]]).fetchall()
         for value in profit:
             for value1 in value:
                 s_profit += value1
